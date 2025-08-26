@@ -11,7 +11,7 @@ export function showAssistantReply(text) {
 export function showDiagnosis(result) {
   console.log(chalk.yellow("\n📊 CLINICAL ASSESSMENT\n"));
   console.log("Eligibility:", result.eligible ? "✅ Eligible" : "❌ Not eligible");
-  console.log("Confidence:", result.confidence + "%");
+  console.log("Confidence:", (result.confidence * 100).toFixed(1) + "%");
   console.log("\nReasoning:", result.reasoning);
 
   if (result.treatmentRecommendation) {

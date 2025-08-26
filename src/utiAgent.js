@@ -4,38 +4,42 @@ import { showDiagnosis } from "./terminal.js";
 
 export class UTIAgent {
   constructor() {
-   this.conversation = [
+ this.conversation = [
   {
     role: "system",
     content: `
-You are a specialized UTI treatment agent. Follow official guidelines strictly.
-Ask patient questions step by step and record answers.
-Once you have all the required information to make a diagnosis, respond with the exact phrase:
-"READY_FOR_DIAGNOSIS"
-before giving any treatment advice.
-Guidelines: ${UTI_GUIDELINES}
+    You are a specialized UTI treatment agent. Follow official guidelines strictly.
+    Ask patient questions step by step and record answers.
+    Once you have all the required information to make a diagnosis, respond with the exact phrase:
+   "READY_FOR_DIAGNOSIS" before giving any treatment advice.
+
+    IMPORTANT: You may only answer questions about urinary tract infections and related clinical topics. 
+    If the user asks anything unrelated (jokes, personal questions, general chat), reply exactly:
+    "I'm only able to provide guidance on urinary tract infections and related clinical questions."
+
+    Guidelines: ${UTI_GUIDELINES}
     `,
   },
 ];
+
     this.patientData = {};
   }
 
-async processUserInput(input) {
-  this.conversation.push({ role: "user", content: input });
+  async processUserInput(input) {
+    this.conversation.push({ role: "user", content: input });
 
-  const response = await chatWithLLM(this.conversation);
-  this.conversation.push({ role: "assistant", content: response });
+    const response = await chatWithLLM(this.conversation);
+    this.conversation.push({ role: "assistant", content: response });
 
-  if (/READY_FOR_DIAGNOSIS/i.test(response)) {
-    const result = await this.getDiagnosis();
-    showDiagnosis(result);
+    if (/READY_FOR_DIAGNOSIS/i.test(response)) {
+      const result = await this.getDiagnosis();
+      showDiagnosis(result);
 
-    return "🤖 Agent: All questions collected. Assessment complete.";
+      return "🤖 Agent: All questions collected. Assessment complete.";
+    }
+
+    return response;
   }
-
-  return response;
-}
-
 
   async getDiagnosis() {
     const schema = {
@@ -67,7 +71,8 @@ async processUserInput(input) {
         ...this.conversation,
         {
           role: "user",
-          content: `Based on our conversation, summarize patient info and provide structured diagnosis in JSON.`,
+          content:
+            "Based on our conversation, summarize patient info and provide structured diagnosis in JSON.",
         },
       ],
       schema
