@@ -16,12 +16,18 @@ export class UTIAgent {
     this.patientData = {};
   }
 
-  async processUserInput(input) {
-    this.conversation.push({ role: "user", content: input });
-    const response = await chatWithLLM(this.conversation);
-    this.conversation.push({ role: "assistant", content: response });
-    return response;
+async processUserInput(input) {
+  this.conversation.push({ role: "user", content: input });
+  const response = await chatWithLLM(this.conversation);
+  this.conversation.push({ role: "assistant", content: response });
+
+  if (/ready for diagnosis/i.test(response)) {
+    const result = await this.getDiagnosis();
+    return `Diagnosis ready. Type "diagnosis" to view results.`;
   }
+
+  return response;
+}
 
   async getDiagnosis() {
     const schema = {
