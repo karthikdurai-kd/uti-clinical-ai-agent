@@ -1,4 +1,4 @@
-# LiveWell UTI (Urinary Tract Infection) Treatment AI Agent
+# ⚕️ LiveWell UTI (Urinary Tract Infection) Treatment AI Agent
 An intelligent AI-powered healthcare agent that specializes in diagnosing and treating urinary tract infections (UTIs) following clinical guidelines.
 
 ## 🎯 Overview
