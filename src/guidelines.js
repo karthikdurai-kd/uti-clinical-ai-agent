@@ -7,7 +7,7 @@ Eligibility:
 - Exclude if: pregnant, fever/chills, flank pain, recurrent UTIs.
 - Exclude if: complicated (catheter, diabetes, immunocompromised).
 - Exclude if: allergy to Nitrofurantoin or TMP-SMX.
-- Exclude if: renal impairment .
+- Exclude if: renal impairment.
 
 Treatment:
 

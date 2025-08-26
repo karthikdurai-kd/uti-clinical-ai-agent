@@ -1,6 +1,7 @@
 import { chatWithLLM } from "./openaiService.js";
 import { UTI_GUIDELINES } from "./guidelines.js";
 import { showDiagnosis } from "./terminal.js";
+import { logUserInput, logAgentResponse, logSystemEvent, logger } from "./utils/logger.js";
 
 export class UTIAgent {
   constructor() {
@@ -23,23 +24,42 @@ export class UTIAgent {
 ];
 
     this.patientData = {};
+    logSystemEvent('agent_initialized');
   }
 
-  async processUserInput(input) {
+async processUserInput(input) {
+  try {
+    logUserInput(input);
+    
     this.conversation.push({ role: "user", content: input });
-
     const response = await chatWithLLM(this.conversation);
     this.conversation.push({ role: "assistant", content: response });
 
-    if (/READY_FOR_DIAGNOSIS/i.test(response)) {
-      const result = await this.getDiagnosis();
-      showDiagnosis(result);
+    logAgentResponse(response);
 
-      return "🤖 Agent: All questions collected. Assessment complete.";
-    }
-
-    return response;
+  if (/READY_FOR_DIAGNOSIS/i.test(response)) {
+    logSystemEvent('diagnosis_ready');
+    const result = await this.getDiagnosis();
+    
+    logSystemEvent('diagnosis_complete', {
+      eligible: result.eligible,
+      confidence: result.confidence
+    });
+    
+    showDiagnosis(result);
+    return "🤖 Agent: All questions collected. Assessment complete.";
   }
+
+  return response;
+  } catch (error) {
+    logger.error('Error in processUserInput', {
+      role: 'system',
+      error: error.message,
+      input: input
+    });
+    throw error;
+  }
+}
 
   async getDiagnosis() {
     const schema = {
