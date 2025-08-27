@@ -3,7 +3,7 @@ An intelligent AI-powered healthcare agent built with **Node.js**, **OpenAI GPT-
 
 ### 🎯 **Overview**
 
-This UTI Treatment Agent can:
+This AI Agent can:
 - Collect patient symptoms and medical history
 - Assess eligibility for UTI treatment
 - Prescribe appropriate antibiotic treatments
