@@ -1,3 +1,5 @@
+// UTI Assessment & Prescribing Algorithm as per the source: https://www.uptodate.com/contents/uti-assessment-and-prescribing-algorithm
+
 export const UTI_GUIDELINES = `
 UTI Assessment & Prescribing Algorithm:
 

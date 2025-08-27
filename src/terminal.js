@@ -1,21 +1,24 @@
 import chalk from "chalk";
 
+// Show the welcome banner
 export function showBanner() {
-  console.log(chalk.greenBright("\n💊 UTI Clinical AI Agent\n"));
+  console.log(chalk.greenBright("\nUTI Clinical AI Agent\n"));
 }
 
+// Show the UTI AI Agent's reply
 export function showAssistantReply(text) {
   console.log(chalk.blue("🤖 Agent:"), chalk.white(text));
 }
 
+// Show the diagnosis result in a structured format
 export function showDiagnosis(result) {
-  console.log(chalk.yellow("\n📊 CLINICAL ASSESSMENT\n"));
-  console.log("Eligibility:", result.eligible ? "✅ Eligible" : "❌ Not eligible");
+  console.log(chalk.yellow("\nCLINICAL ASSESSMENT\n"));
+  console.log("Eligibility:", result.eligible ? "Eligible" : "Not eligible");
   console.log("Confidence:", (result.confidence * 100).toFixed(1) + "%");
   console.log("\nReasoning:", result.reasoning);
 
   if (result.treatmentRecommendation) {
-    console.log("\n💊 TREATMENT:");
+    console.log("\nTREATMENT:");
     console.log("• Antibiotic:", result.treatmentRecommendation.antibiotic);
     console.log("• Dosage:", result.treatmentRecommendation.dosage);
     console.log("• Duration:", result.treatmentRecommendation.duration);
@@ -23,10 +26,10 @@ export function showDiagnosis(result) {
   }
 
   if (result.redFlags?.length) {
-    console.log(chalk.red("\n⚠️ Red Flags:"), result.redFlags.join(", "));
+    console.log(chalk.red("\nRed Flags:"), result.redFlags.join(", "));
   }
 
   if (result.referralNeeded) {
-    console.log(chalk.red("\n🏥 Referral required!"));
+    console.log(chalk.red("\nReferral required!"));
   }
 }

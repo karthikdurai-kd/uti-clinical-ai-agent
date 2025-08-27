@@ -5,6 +5,7 @@ import { logUserInput, logAgentResponse, logSystemEvent, logger } from "./utils/
 
 export class UTIAgent {
   constructor() {
+ // Prompt for the UTI AI Agent with the role and guidelines
  this.conversation = [
   {
     role: "system",
@@ -23,10 +24,12 @@ export class UTIAgent {
   },
 ];
 
+    // Initialize the patient data
     this.patientData = {};
     logSystemEvent('agent_initialized');
   }
 
+  // Process the user input
 async processUserInput(input) {
   try {
     logUserInput(input);
@@ -37,6 +40,7 @@ async processUserInput(input) {
 
     logAgentResponse(response);
 
+    // Check if the response contains the phrase "READY_FOR_DIAGNOSIS", so diagnosis report can be generated
   if (/READY_FOR_DIAGNOSIS/i.test(response)) {
     logSystemEvent('diagnosis_ready');
     const result = await this.getDiagnosis();
@@ -61,6 +65,7 @@ async processUserInput(input) {
   }
 }
 
+  // Get the diagnosis report
   async getDiagnosis() {
     const schema = {
       name: "DiagnosisSchema",
@@ -86,6 +91,7 @@ async processUserInput(input) {
       },
     };
 
+    // Generate the diagnosis report using the OpenAI GPT-5-mini model
     const result = await chatWithLLM(
       [
         ...this.conversation,

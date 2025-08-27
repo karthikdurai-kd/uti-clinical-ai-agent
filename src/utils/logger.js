@@ -3,6 +3,7 @@ import path from "path";
 
 const logPath = path.join(process.cwd(), "logs", "uti_agent.log");
 
+// Create a logger for the UTI AI Agent
 export const logger = createLogger({
   level: "info",
   format: format.combine(
@@ -14,6 +15,7 @@ export const logger = createLogger({
   ],
 });
 
+// Log the user input
 export const logUserInput = (input) => {
   logger.info('User Input', {
     role: 'user',
@@ -22,6 +24,7 @@ export const logUserInput = (input) => {
   });
 };
 
+// Log the agent response
 export const logAgentResponse = (response) => {
   logger.info('Agent Response', {
     role: 'agent',
@@ -30,6 +33,7 @@ export const logAgentResponse = (response) => {
   });
 };
 
+// Log the system event
 export const logSystemEvent = (event, details = {}) => {
   logger.info('System Event', {
     role: 'system',
