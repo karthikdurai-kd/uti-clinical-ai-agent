@@ -1,4 +1,4 @@
-# ⚕️ LiveWell UTI (Urinary Tract Infection) Treatment AI Agent
+# ⚕️ UTI (Urinary Tract Infection) Clinical AI Agent
 An intelligent AI-powered healthcare agent built with **Node.js**, **OpenAI GPT-5 API**, and **Winston logging** that specializes in diagnosing and treating urinary tract infections (UTIs) following clinical guidelines. 
 
 ### 🎯 **Overview**
@@ -59,7 +59,7 @@ The agent follows evidence-based UTI treatment guidelines from the [Ontario Coll
 ### 📁 **Project Structure**
 
 ```
-livewell-ai-uti-agent/
+uti-clinical-ai-agent/
 ├── src/
 │   ├── index.js              # Main application entry point
 │   ├── utiAgent.js           # Core UTI agent logic
@@ -115,8 +115,8 @@ The system generates comprehensive logs for:
 
 1. **Clone the repository**
    ```bash
-   git clone git@github.com:karthikdurai-kd/livewell-ai-uti-agent.git
-   cd livewell-ai-uti-agent
+   git clone git@github.com:karthikdurai-kd/uti-clinical-ai-agent.git
+   cd uti-clinical-ai-agent
    ```
 
 2. **Install dependencies**

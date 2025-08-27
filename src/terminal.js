@@ -1,7 +1,7 @@
 import chalk from "chalk";
 
 export function showBanner() {
-  console.log(chalk.greenBright("\n💊 UTI Treatment Agent\n"));
+  console.log(chalk.greenBright("\n💊 UTI Clinical AI Agent\n"));
 }
 
 export function showAssistantReply(text) {

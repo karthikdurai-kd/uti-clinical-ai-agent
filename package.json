@@ -1,5 +1,5 @@
 {
-  "name": "livewell-ai-uti-agent-v1",
+  "name": "uti-clinical-ai-agent",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
