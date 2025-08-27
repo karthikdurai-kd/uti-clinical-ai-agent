@@ -7,7 +7,7 @@ This AI Agent can:
 - Collect patient symptoms and medical history
 - Assess eligibility for UTI treatment
 - Prescribe appropriate antibiotic treatments
-- Provide patient education and follow-up instructions
+- Provide patient diagnosis and follow-up instructions
 
 ---
 
