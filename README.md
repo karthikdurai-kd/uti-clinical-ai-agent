@@ -1,5 +1,5 @@
 # ⚕️ LiveWell UTI (Urinary Tract Infection) Treatment AI Agent
-An intelligent AI-powered healthcare agent that specializes in diagnosing and treating urinary tract infections (UTIs) following clinical guidelines.
+An intelligent AI-powered healthcare agent built with **Node.js**, **OpenAI GPT-5 API**, and **Winston logging** that specializes in diagnosing and treating urinary tract infections (UTIs) following clinical guidelines. 
 
 ## 🎯 Overview
 
@@ -11,21 +11,81 @@ This UTI Treatment Agent can:
 
 ## 🚀 Features
 
-### **Clinical Assessment**
-- Systematic patient data collection
-- Evidence-based eligibility criteria
-- Risk factor assessment
-- Red flag detection
+### **Clinical Assessment & Treatment Recommendations**
+- Systematic step-by-step collection of patient symptoms and medical history
+- Evidence-based eligibility evaluation and risk factor assessment
+- Red flag detection and referral recommendations
+- First-line and alternative antibiotic selection
+- Automatic signaling when all patient information is collected
+- Structured JSON outputs for diagnostic and treatment reports
 
-### **Treatment Recommendations**
-- First-line antibiotic selection
-- Alternative treatment options
-- Dosage and duration guidelines
-- Patient safety considerations
+### **AI-Powered Intelligence & Reporting**
+- OpenAI GPT-5 LLM powers conversational interactions
+- Generates structured JSON diagnostic reports
+- Eligibility assessment with confidence score
+- Detailed reasoning for clinical decisions
+- Restricted to UTI-related topics with automatic redirection for off-topic questions
 
 ### **Logging**
 - Role-based logging (User/Agent/System)
 - Local file storage
+
+## 🏥 Clinical Guidelines
+
+The agent follows evidence-based UTI treatment guidelines from the [Ontario College of Pharmacists Assessment & Prescribing Algorithm for Uncomplicated Urinary Tract Infection (Cystitis)](https://www.ocpinfo.com/wp-content/uploads/2022/12/assessment-prescribing-algorithm-urinary-tract-infection-english.pdf).
+
+
+### **Eligibility Criteria**
+- Adult (≥18 years)
+- Female patients only
+- Non-pregnant
+- No fever/chills or flank pain
+- No recurrent UTIs
+- No complicating factors
+
+
+## 📁 Project Structure
+
+```
+livewell-ai-uti-agent/
+├── src/
+│   ├── index.js              # Main application entry point
+│   ├── utiAgent.js           # Core UTI agent logic
+│   ├── guidelines.js         # Clinical guidelines and algorithms
+│   ├── openaiService.js      # OpenAI API integration
+│   ├── terminal.js           # Terminal UI and display functions
+│   └── utils/
+│       └── logger.js         # Winston-based logging system
+├── logs/                     # Application logs (not in git)
+├── package.json              # Dependencies and scripts
+├── .env                      # Environment variables (not in git)
+└── README.md                 # This file
+```
+
+## 📊 Logging
+
+The system generates comprehensive logs for:
+- User interactions
+- Agent responses
+- Clinical decisions
+- System events
+- Error tracking
+
+### **Log Format**
+```json
+{
+  "timestamp": "2024-01-15 19:30:45",
+  "level": "info",
+  "message": "User Input",
+  "role": "user",
+  "content": "I have burning sensation"
+}
+```
+
+## 🔖 Test Scenarios
+1. **Eligible Patient**: Female, 25, non-pregnant, uncomplicated symptoms
+2. **Ineligible Patient**: Male, pregnant, or with red flags
+3. **Edge Cases**: Allergies, kidney disease, recurrent UTIs
 
 ## 📋 Prerequisites
 
@@ -60,76 +120,9 @@ This UTI Treatment Agent can:
 npm start
 ```
 
-## 🏥 Clinical Guidelines
-
-The agent follows evidence-based UTI treatment guidelines from the [Ontario College of Pharmacists Assessment & Prescribing Algorithm for Uncomplicated Urinary Tract Infection (Cystitis)](https://www.ocpinfo.com/wp-content/uploads/2022/12/assessment-prescribing-algorithm-urinary-tract-infection-english.pdf).
-
-
-### **Eligibility Criteria**
-- Adult (≥18 years)
-- Female patients only
-- Non-pregnant
-- No fever/chills or flank pain
-- No recurrent UTIs
-- No complicating factors
-
-
-## 📁 Project Structure
-
-```
-livewell-ai-uti-agent/
-├── src/
-│   ├── index.js              # Main application entry point
-│   ├── utiAgent.js           # Core UTI agent logic
-│   ├── guidelines.js         # Clinical guidelines and algorithms
-│   ├── openaiService.js      # OpenAI API integration
-│   ├── terminal.js           # Terminal UI and display functions
-│   └── utils/
-│       └── logger.js         # Winston-based logging system
-├── logs/                     # Application logs (not in git)
-├── package.json              # Dependencies and scripts
-├── .env                      # Environment variables (not in git)
-└── README.md                 # This file
-```
-
-##  Configuration
-
-### **Environment Variables**
-```bash
-OPENAI_API_KEY=your_openai_api_key
-LOG_LEVEL=info
-```
-
-## 📊 Logging
-
-The system generates comprehensive logs for:
-- User interactions
-- Agent responses
-- Clinical decisions
-- System events
-- Error tracking
-
-### **Log Format**
-```json
-{
-  "timestamp": "2024-01-15 19:30:45",
-  "level": "info",
-  "message": "User Input",
-  "role": "user",
-  "content": "I have burning sensation"
-}
-```
-
 ##  Testing
 
 ### **Run the Application**
 ```bash
 npm start
 ```
-
-### **Test Scenarios**
-1. **Eligible Patient**: Female, 25, non-pregnant, uncomplicated symptoms
-2. **Ineligible Patient**: Male, pregnant, or with red flags
-3. **Edge Cases**: Allergies, kidney disease, recurrent UTIs
-
-
