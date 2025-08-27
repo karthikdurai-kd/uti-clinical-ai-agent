@@ -135,8 +135,3 @@ The system generates comprehensive logs for:
    ```bash
    npm start
    ```
-
-5. **Run the Application**
-   ```bash
-   npm start
-   ```
