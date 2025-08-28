@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { UTIAgent } from "./utiAgent.js";
-import { showBanner, showAssistantReply, showDiagnosis } from "./terminal.js";
+import { showBanner, showAssistantReply, showDiagnosis, showLoading } from "./terminal.js";
 import { logSystemEvent, logger } from "./utils/logger.js";
 import chalk from "chalk";
 
@@ -34,10 +34,18 @@ async function run() {
         showDiagnosis(result);
         continue;
       }
-
-      // Process the user input
-      const reply = await agent.processUserInput(input);
-      showAssistantReply(reply);
+      
+      const spinner = showLoading();
+      
+      try {
+        // Process the user input
+        const reply = await agent.processUserInput(input);
+        spinner.stop();
+        showAssistantReply(reply);
+      } catch (error) {
+        spinner.stop();
+        throw error;
+      }
     }
 
     logSystemEvent('session_ended');

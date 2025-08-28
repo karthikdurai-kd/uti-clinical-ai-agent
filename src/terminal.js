@@ -1,8 +1,18 @@
 import chalk from "chalk";
+import ora from "ora";
 
 // Show the welcome banner
 export function showBanner() {
   console.log(chalk.greenBright("\nUTI Clinical AI Agent\n"));
+}
+
+// Loading spinner
+export function showLoading() {
+  return ora({
+    color: 'blue',
+    spinner: 'dots',
+    text: 'Processing...'
+  }).start();
 }
 
 // Show the UTI AI Agent's reply
